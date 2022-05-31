@@ -1,0 +1,41 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id          :bigint           not null, primary key
+#  content     :string
+#  date        :date
+#  description :string
+#  isPublic    :boolean
+#  likes       :integer
+#  postID      :integer
+#  title       :string
+#  userID      :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint
+#
+# Indexes
+#
+#  index_posts_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+
+one:
+  postID: 1
+  userID: 1
+  title: MyString
+  content: MyString
+  date: 1
+  isPublic: false
+
+two:
+  postID: 1
+  userID: 1
+  title: MyString
+  content: MyString
+  date: 1
+  isPublic: false
