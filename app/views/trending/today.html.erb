@@ -1,0 +1,38 @@
+
+<div style="float: right;">
+  <%= link_to 'Newest', trending_newest_path, class: 'btn btn-secondary' %>
+  <%= link_to 'Oldest', trending_oldest_path, class: 'btn btn-secondary' %>
+  <%= link_to 'This Week', trending_this_week_path, class: 'btn btn-secondary' %>
+</div>
+
+<h1 style="clear: both; margin-bottom: 2cm; font-family: Copperplate;"><center>Trending</center></h1>
+
+<% @posts.each do |post| %>
+  <% if post.isPublic == true %>
+    <div>
+      <h2 style="font-style: italic;"><center><%= post.title %></center></h2>
+
+      <div style="float: left;">
+        <% if post.isPublic == true %>
+          <i class="fa-solid fa-earth-americas"></i>
+        <% else %>
+          <i class="fa-solid fa-user-group"></i>
+        <% end %>
+      </div>
+
+      <p style="clear: both; font-size: 15px;">Published by <%= post.creator.userName %></p>
+      <% if post.date != nil %>
+        <p>Date: <%= post.date.strftime("%m/%d/%Y") %></p>
+      <% end %>
+
+      <% if post.post_image.attached? %>
+        <div class="my-4">
+          <%= image_tag post.post_image, class: 'w-100 d-block mx-auto', style: 'max-width: 32rem; max-height: 20rem; object-fit: contain; border-radius: 9%; border-style: solid; border-color: black; border-width: 3px;' %>
+        </div>
+      <% end %>
+      <p style="clear: both; font-size: 20px;"><%= post.content %></p>
+      <hr style="height: 3px; background-color: black; margin-top: 2cm; margin-bottom: 2cm;" />
+    </div>
+  <% end %>
+<% end %>
+

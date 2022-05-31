@@ -1,0 +1,20 @@
+
+<h1>Report <%= @user.userName %></h1>
+
+<p>Enter the number that indicates the reason why you're reporting the user</p>
+
+<ul>
+  <li>Spam --- 1</li>
+  <li>Nudity --- 2</li>
+  <li>Violence --- 3</li>
+  <li>Harassment --- 4</li>
+  <li>Terrorism --- 5</li>
+</ul>
+
+<%= bootstrap_form_with model: @user, url: user_path(@user), method: :patch, local: true do |f| %>
+  <%= f.number_field :reportCount, label: 'Enter the number below', value: 1 %>
+  <%= f.submit 'Report', class: 'btn btn-danger' %>
+<% end %>
+
+<%= link_to 'Cancel', posts_path, class: 'btn btn-secondary' %>
+

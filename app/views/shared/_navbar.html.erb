@@ -1,0 +1,56 @@
+<div style="position: sticky; top: 0; width: 100%; overflow: hidden;">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="/title"><%= image_tag 'CustomIcon.jpeg', class: 'd-block mx-auto', style: 'max-width: 2.6rem;' %></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item <%= active_class(posts_path) %>" style="height: 32px">                
+          <%= link_to posts_path do %><i class="fa-solid fa-house fa-2xl" style="color:white; margin: 0 1rem"></i> <% end %>
+        </li>
+        <li class="nav-item <%= active_class(trending_newest_path) %>" style="height: 32px">                
+          <%= link_to trending_newest_path do %><i class="fa-solid fa-arrow-trend-up fa-2xl" style="color:white; margin: 0 1rem"></i> <% end %>
+        </li>        
+        </li>
+      </ul>
+    </div>
+
+    <div class="mx-auto order-0">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item <%= active_class(search_path) %>" style="height: 32px">                
+          <%= link_to search_path do %><i class="fa-solid fa-magnifying-glass fa-2xl" style="color:white; margin-right: 135px"></i> <% end %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+
+        <!-- User Edit Account Settings-->
+          <li class="nav-item <%= active_class(edit_user_registration_path) %>" style="height: 32px">                
+            <%= link_to edit_user_registration_path do %><i class="fa-solid fa-gear fa-2xl" style="color:white; margin: 0 1rem"></i> <% end %>
+          </li>
+
+          <!-- User Profile Page -->
+          <li class="nav-item <%= active_class(users_path) %>" style="height: 32px">                
+            <%= link_to users_path do %><i class="fa-solid fa-user fa-2xl" style="color:white; margin: 0 1rem"></i> <% end %>
+          </li>
+
+          <!-- User Signout -->
+          <li class="nav-item <%= active_class(destroy_user_session_path) %>" style="height: 32px">                
+            <%= button_to destroy_user_session_path, method: :delete do %><i class="fa-solid fa-right-from-bracket fa-2xl" style="color:white;  margin: 0 1rem"></i> <% end %>
+          </li>
+        <% else %>
+        <!-- User Login -->
+          <li class="nav-item <%= active_class(new_user_session_path) %>" style="height: 32px">                
+            <%= link_to new_user_session_path do %><i class="fa-solid fa-right-to-bracket fa-2xl" style="color:white; margin: 0 1rem"></i> <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>

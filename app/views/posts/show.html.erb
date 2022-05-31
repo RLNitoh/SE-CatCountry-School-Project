@@ -1,0 +1,60 @@
+<h1 style="font-style: italic;"><center><%= @post.title %></center></h1>
+
+<div style="float: left;">
+  <% if @post.isPublic == true %>
+    <i class="fa-solid fa-earth-americas"></i>
+  <% else %>
+    <i class="fa-solid fa-user-group"></i>
+  <% end %>
+</div>
+
+<div style="float: right;">
+  <% if @post.creator == current_user %> 
+    <td><%= link_to "Edit Post", edit_post_path(@post), class: 'btn btn-secondary' %></td>
+    <td><%= link_to "Delete Post", post_path(@post), method: :delete, class: 'btn btn-danger' %></td>       
+  <% end %>
+</div>
+
+<p style="clear: both; font-size: 15px;">Published by <%= @post.creator.userName %></p>
+
+<% if @post.date != nil %>
+  <p>Date: <%= @post.date.strftime("%m/%d/%Y") %></p>
+<% else %>
+  <p>Date: none</p>
+<% end %>
+
+<p style="clear: both; font-size: 20px;"><%= @post.content %></p>
+<% if @post.post_image.attached? %>
+  <div class="my-4">
+    <%= image_tag @post.post_image, class: 'w-100 d-block mx-auto', style: 'max-width: 32rem; max-height: 20rem; object-fit: contain; border-radius: 9%; border-style: solid; border-color: black; border-width: 3px;' %>
+  </div>
+<% end %>
+
+<%= link_to "Back to Posts", posts_path, class: 'btn btn-secondary' %>
+
+<div class="post-show row">
+  <div class="col-md-8">
+    <%=image_tag @post.image, class: 'image' %>
+  </div>
+  <div class="col-md-4">
+    <div class="user">
+      <div class="avatar">
+        <% if @post.user.avatar.attached? %>
+          <%= link_to user_path(@post.user) do %>
+            <%= image_tag @post.user.avatar %>
+          <% end %>
+        <% end %>
+      </div>
+      <%= link_to @post.user.username, user_path(@post.user), class: 'username' %>
+    </div>
+    <div class="description">
+      <%= @post.description %>
+    </div>
+  </div>
+</div>
+
+<div class="delete">
+  <% if current_user.posts.exists?(@post.id) %>
+    <%= link_to 'Remove', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>

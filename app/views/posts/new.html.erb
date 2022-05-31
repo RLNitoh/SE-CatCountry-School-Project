@@ -1,0 +1,14 @@
+<h1>Create New Post</h1>
+
+<%= bootstrap_form_with model: @post, url: posts_path, method: :post, local: true do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_area :content %>
+  <%= f.file_field :post_image %>
+  <%= f.select :isPublic, [true, false], label: "Public:" %>
+  <%= f.submit %>
+
+<% end %>
+
+<%= link_to "Cancel", posts_path, class: 'btn btn-secondary' %>
+
+

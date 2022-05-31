@@ -1,0 +1,25 @@
+<html>
+
+<body>
+
+    <%= image_tag @game.CatPicture, class: 'w-50 shadow-lg d-block mx-auto', style: 'max-width: 20rem;' %>
+    <br>
+    <p style="text-align:left;">
+        What is the name of this cat?
+        <span style="float:right;">
+            Where is this cat from?
+        </span>
+    </p>
+
+    <%= bootstrap_form_with model: @game, url: game_path(@game), method: :patch, local: true do |f| %>
+        <span style="float:left;">
+            <%= f.select :NameAnswer, [@game.CatName, @game.CatNameDistractor1, @game.CatNameDistractor2, @game.CatNameDistractor3].shuffle, hide_label: true %>
+            <%= f.submit "Submit"%>
+        </span>
+        <span style="float:right;">
+            <%= f.select :OriginAnswer, [@game.CatOrigin, @game.CatOriginDistractor1, @game.CatOriginDistractor2, @game.CatOriginDistractor3].shuffle, hide_label: true %>
+        </span>
+    <% end %>
+    
+</body>
+</html>

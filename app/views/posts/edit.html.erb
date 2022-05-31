@@ -1,0 +1,10 @@
+<h1>Edit Post</h1>
+<%= bootstrap_form_with model: @post, url: post_path(@post), method: :patch, local: true do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_area :content %>
+  <%= f.file_field :post_image %>
+  <%= f.select :isPublic, [true, false], label: "Public:" %>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Cancel", posts_path, class: 'btn btn-secondary' %>
